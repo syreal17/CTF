@@ -10,11 +10,17 @@ Open the packet (link: https://github.com/SJChang/CTF/blob/master/thekey(Forensi
 $ tshark -r thekey.pcapng -T fields -e usb.capdata
 ```
 > 00:00:00:00:00:00:00:00
+
 > 00:00:19:00:00:00:00:00
+
 > 00:00:00:00:00:00:00:00
+
 > 00:00:0c:00:00:00:00:00
+
 > 00:00:0c:10:00:00:00:00
+
 > 00:00:10:2c:00:00:00:00
+
 > 00:00:2c:00:00:00:00:00
 
 As notice that the "00:00:00:00:00:00:00:00" might be the noise to destract information, so that I'd make it fill out.
