@@ -1,0 +1,72 @@
+sansforensics@siftworkstation: ~/Desktop/pico2020/pdf
+$ mmls pico.dd 
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+      Slot      Start        End          Length       Description
+000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+001:  -------   0000000000   0000000127   0000000128   Unallocated
+002:  000:000   0000000128   0000204927   0000204800   DOS FAT16 (0x06)
+003:  000:001   0000204928   0000409727   0000204800   Win95 FAT32 (0x0b)
+004:  000:002   0000409728   0000614527   0000204800   NTFS / exFAT (0x07)
+005:  Meta      0000614528   0001044607   0000430080   DOS Extended (0x05)
+006:  Meta      0000614528   0000614528   0000000001   Extended Table (#1)
+007:  -------   0000614528   0000614655   0000000128   Unallocated
+008:  001:000   0000614656   0000819455   0000204800   NTFS / exFAT (0x07)
+009:  Meta      0000819456   0001040767   0000221312   DOS Extended (0x05)
+010:  Meta      0000819456   0000819456   0000000001   Extended Table (#2)
+011:  -------   0000819456   0000819583   0000000128   Unallocated
+012:  002:000   0000819584   0001040767   0000221184   Win95 FAT32 (0x0b)
+013:  -------   0001040768   0001048575   0000007808   Unallocated
+
+
+
+# curve the ntfs image only
+sansforensics@siftworkstation: ~/Desktop/pico2020/icons
+$ dd if=./pico.dd of=./icons.dd skip=409728 count=204800 bs=512
+204800+0 records in
+204800+0 records out
+104857600 bytes (105 MB, 100 MiB) copied, 1.483 s, 70.7 MB/s
+
+
+# mount the image
+sansforensics@siftworkstation: ~/Desktop/pico2020/pdf
+$ sudo mkdir /mnt/icons/
+sansforensics@siftworkstation: ~/Desktop/pico2020/pdf
+$ sudo mount -o loop icons.dd /mnt/icons/
+
+
+# put icons image in the folder
+sansforensics@siftworkstation: ~
+$ cd /mnt/icons/
+sansforensics@siftworkstation: /mnt/icons
+$ sudo sync
+sansforensics@siftworkstation: /mnt/icons
+$ sudo rm -r icon/
+sansforensics@siftworkstation: /mnt/icons
+$ sudo sync
+sansforensics@siftworkstation: ~/Desktop/pico2020/icons
+$ sudo umount /mnt
+umount: /mnt: not mounted.
+
+
+
+# Open disk editor
+$MSF -> open DiskEditor
+
+<svg
+3C 73 76 67
+
+
+picoCTF{Hidd3n_Flag_b2tween_d3l3t3d_Imgs}
+70 69 63 6f 
+43 54 46 7b 
+48 69 64 64 
+33 6e 5f 46 
+6c 61 67 5f 
+62 32 74 77 
+65 65 6e 5f 
+64 33 6c 33 
+74 33 64 5f 
+49 6d 67 73 7d
